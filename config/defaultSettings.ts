@@ -54,7 +54,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: '梵 途 科 技',
   pwa: false,
   iconfontUrl: '',
 } as DefaultSettings;

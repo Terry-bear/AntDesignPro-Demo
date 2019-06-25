@@ -18,7 +18,7 @@ import RightContent from '@/components/GlobalHeader/RightContent';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { isAntDesignPro } from '@/utils/utils';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 
 export interface BasicLayoutProps extends ProLayoutProps, Omit<ConnectProps, 'location'> {
   breadcrumbNameMap: {
@@ -59,7 +59,7 @@ const footerRender: BasicLayoutProps['footerRender'] = (_, defaultDom) => {
       >
         <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
           <img
-            src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
+            src="../assets/techLogo.png"
             width="82px"
             alt="netlify logo"
           />

@@ -81,6 +81,29 @@ export default {
   devtool: isAntDesignProPreview ? 'source-map' : false,
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
+    // 登录页
+    {
+      path: '/',
+      component: '../layouts/BlankLayout',
+      routes: [
+        {
+          path: '/user',
+          component: '../layouts/UserLayout',
+          routes: [
+            {
+              path: '/user',
+              redirect: '/user/login',
+            },
+            {
+              name: 'login',
+              path: '/user/login',
+              component: './user/login',
+            },
+            {
+              component: '404',
+            },
+          ],
+        },
     {
       path: '/',
       component: '../layouts/BasicLayout',
@@ -88,59 +111,81 @@ export default {
       authority: ['admin', 'user'],
       routes: [
         {
-          name: 'basic-form',
-          path: '/form/basic-form',
-          component: './form/basic-form',
-        },
-        {
-          name: 'table-list',
-          path: '/list/table-list',
-          component: './list/table-list',
-        },
-        {
-          name: 'login',
-          path: '/user/login',
-          component: './user/login',
-        },
-        {
-          name: '403',
-          path: '/exception/403',
-          component: './exception/403',
-        },
-        {
-          name: '404',
-          path: '/exception/404',
-          component: './exception/404',
-        },
-        {
-          name: '500',
-          path: '/exception/500',
-          component: './exception/500',
-        },
-        {
-          name: 'settings',
-          path: '/account/settings',
-          component: './account/settings',
-        },
-        {
-          name: 'center',
-          path: '/account/center',
-          component: './account/center',
-        },
-        {
           path: '/',
           name: 'welcome',
           icon: 'smile',
           component: './Welcome',
         },
         {
+          path: '/form',
+          icon: 'form',
+          name: 'form',
+          routes: [
+            {
+              name: 'basic-form',
+              path: '/form/basic-form',
+              component: './form/basic-form',
+            }
+          ]
+        },
+        {
+          path: '/list',
+          icon: 'table',
+          name: 'list',
+          routes: [
+            {
+              name: 'table-list',
+              path: '/list/table-list',
+              component: './list/table-list',
+            }
+          ]
+        },
+        {
+          name: 'exception',
+          icon: 'warning',
+          path: '/exception',
+          routes: [
+            {
+              name: '403',
+              path: '/exception/403',
+              component: './exception/403',
+            },
+            {
+              name: '404',
+              path: '/exception/404',
+              component: './exception/404',
+            },
+            {
+              name: '500',
+              path: '/exception/500',
+              component: './exception/500',
+            },
+          ],
+        },
+        {
+          name: 'account',
+          icon: 'user',
+          path: '/account',
+          routes: [
+            {
+              name: 'center',
+              path: '/account/center',
+              component: './account/center',
+            },
+            {
+              name: 'settings',
+              path: '/account/settings',
+              component: './account/settings',
+            },
+          ],
+        },
+        {
           component: './404',
         },
       ],
-    },
-    {
-      component: './404',
-    },
+    }
+  ]
+}
   ],
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn
   theme: {
