@@ -4,7 +4,6 @@ import { Icon, Tooltip } from 'antd';
 import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 import React from 'react';
-import SelectLang from '../SelectLang';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
 import styles from './index.less';
@@ -53,17 +52,8 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
           id: 'component.globalHeader.help',
         })}
       >
-        <a
-          target="_blank"
-          href="https://pro.ant.design/docs/getting-started"
-          rel="noopener noreferrer"
-          className={styles.action}
-        >
-          <Icon type="question-circle-o" />
-        </a>
       </Tooltip>
       <Avatar />
-      <SelectLang className={styles.action} />
     </div>
   );
 };

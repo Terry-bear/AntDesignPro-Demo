@@ -3,7 +3,6 @@ import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-des
 import DocumentTitle from 'react-document-title';
 import Link from 'umi/link';
 import React from 'react';
-import SelectLang from '@/components/SelectLang';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
 import logo from '../assets/logo.svg';
@@ -38,22 +37,31 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
       })}
     >
       <div className={styles.container}>
-        <div className={styles.lang}>
-          <SelectLang />
-        </div>
         <div className={styles.content}>
           <div className={styles.top}>
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>Ant Design</span>
+                <span className={styles.title}>梵 途 科 技</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            <div className={styles.desc}>面向企业的大宗物流SaaS平台</div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <DefaultFooter
+        links={[{
+          key: 'brahma Technology Co. Ltd.',
+          title: 'brahma Technology Co. Ltd.',
+          href: 'https://fantudl.com',
+          blankTarget: true
+        }, {
+          key: '哆啦快运',
+          title: '哆啦快运',
+          href: 'https://fantudl.com',
+          blankTarget: true
+        }]}
+        copyright="2019梵途科技技术部出品" />
       </div>
     </DocumentTitle>
   );
