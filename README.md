@@ -60,7 +60,7 @@ umi在编译时对路由和dva进行了预处理封装.所以在`page`目录下�
 
 后来无法正常启动,排查原因发现,是新版的`yarn`对包结构进行了优化,直接用`yarn`安装`node_modules`的速度快而稳定.
 
-###接口配置
+### 接口配置
 
 AntDesignPro官方使用`umi-request`·做接口请求。`umi-request`整合了axios和fetch的优点。
 
