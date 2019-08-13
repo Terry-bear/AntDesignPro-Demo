@@ -1,9 +1,17 @@
+/*
+ * @Author: Terryzh
+ * @Date: 2019-08-13 10:16:38
+ * @LastEditors: Terryzh
+ * @LastEditTime: 2019-08-13 10:17:54
+ * @Description: umi-request的使用
+ */
 /**
  * request 网络请求工具
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import { extend } from 'umi-request';
-import { notification } from 'antd';
+import { notification, message } from 'antd';
+import router from 'umi/router';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -28,6 +36,7 @@ const codeMessage = {
  */
 const errorHandler = (error: { response: Response }): void => {
   const { response } = error;
+  console.log('errorHandler', error);
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;
     const { status, url } = response;
@@ -44,7 +53,25 @@ const errorHandler = (error: { response: Response }): void => {
  */
 const request = extend({
   errorHandler, // 默认错误处理
-  credentials: 'include', // 默认请求是否带上cookie
+  credentials: 'same-origin', // 默认请求是否带上cookie
+  // mode: 'no-cors',
+  prefix: '/v2',
+  headers: {
+    Authorization: window.localStorage.getItem('Authorization') || '', // 统一的headers
+  },
 });
 
+// response拦截器, 处理response
+request.interceptors.response.use(async (response, options) => {
+  // 获取后端返回msg和code
+  const { code, msg } = await response.clone().json();
+  if (response.status === 200) {
+    if (code === 200 && !/query|get/g.test(response.url)) message.success(msg);
+    else if (typeof code === 'number' && code.toString().length >= 4) message.warning(msg);
+    else if (typeof code === 'number' && code === 401) message.warning(msg);
+  } else message.error(msg);
+  return response;
+});
+
+// console.log('haha---->', process.env.apiUrl);
 export default request;

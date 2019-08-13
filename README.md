@@ -60,6 +60,114 @@ umi在编译时对路由和dva进行了预处理封装.所以在`page`目录下�
 
 后来无法正常启动,排查原因发现,是新版的`yarn`对包结构进行了优化,直接用`yarn`安装`node_modules`的速度快而稳定.
 
+###接口配置
+
+AntDesignPro官方使用`umi-request`·做接口请求。`umi-request`整合了axios和fetch的优点。
+
+在`extend`方法中配置请求头，带入`token`。
+
+```ts
+/**
+ * 配置request请求时的默认参数
+ */
+const request = extend({
+  errorHandler, // 默认错误处理
+  credentials: 'same-origin', // 默认请求是否带上cookie
+  // mode: 'no-cors',
+  prefix: '/api',
+  headers: {
+    Authorization: window.localStorage.getItem('Authorization') || '', // 统一的headers
+  },
+});
+```
+
+接口调用异常的捕获。
+
+```ts
+/**
+ * 异常处理程序
+ */
+const errorHandler = (error: { response: Response }): void => {
+  const { response } = error;
+  console.log('errorHandler', error);
+  if (response && response.status) {
+    const errorText = codeMessage[response.status] || response.statusText;
+    const { status, url } = response;
+		
+    // notification是AntDesign里面的组件，作为提醒用
+    notification.error({
+      message: `请求错误 ${status}: ${url}`,
+      description: errorText,
+    });
+  }
+};
+```
+
+接口调用返回值的处理
+
+```ts
+// response拦截器, 处理response
+request.interceptors.response.use(async (response, options) => {
+  // 获取后端返回msg和code
+  const { code, msg } = await response.clone().json();
+  if (response.status === 200) {
+    if (code === 200 && !/query|get/g.test(response.url)) message.success(msg);
+    else if (typeof code === 'number' && code.toString().length >= 4) message.warning(msg);
+    else if (typeof code === 'number' && code === 401) message.warning(msg);
+  } else message.error(msg);
+  return response;
+});
+```
+
+
+
+## 全局化配置
+
+全局化配置中可以修改全局样式文件。
+
+在根目录下的`config/config.ts`或者`config/config.js`文件中配置
+
+```ts
+theme: {
+    'primary-color': primaryColor, // 主色调
+    'font-size-base': '12px', // 主字号
+  },
+```
+
+> 具体配置可参考[官网示例](https://ant.design/docs/react/customize-theme-cn)。
+
+
+
+## webpack优化
+
+#### 如何在打包过程中去掉console
+
+在AntDesignPro中，webpack使用的是4.0+，无法继续使用`UglifyJsPlugin`.
+
+加上AntDesignPro中使用的是链式配置调用。—>`chainWebpack`
+
+采坑发现使用最新的`TerserPlugin`可以解决此问题。
+
+文件路径`config/plugin.config.ts`
+
+```ts
+config.optimization
+    // TODO TerserPlugin优化
+    .minimizer('terser-webpack-plugin')
+    .use(TerserPlugin, [
+      {
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      },
+    ])
+    .end()
+```
+
+> 完美去除打包后的console
+
 #### 后续采坑继续补充...
 
 ...
