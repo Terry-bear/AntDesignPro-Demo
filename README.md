@@ -16,6 +16,23 @@
 
 重新`yarn`一下,安装回来`node_modules`,项目正常启动.
 
+## 删除不常用的package
+删除package.json里面的：
+1. 关于提交前检查的项
+```json
+"husky": { "hooks": { "pre-commit": "npm run lint-staged" } },
+```
+2. 关于jest测试用例
+```json
+"jest-puppeteer": "^4.2.0",
+```
+3. 关于puppeteer浏览器
+```json
+  "optionalDependencies": { "puppeteer": "^1.17.0" },
+```
+4. 国际化文件`、src/locales/*`
+
+
 ## 其他采坑进行中
 
 ### 删除了相关的测试用例
