@@ -31,7 +31,10 @@
   "optionalDependencies": { "puppeteer": "^1.17.0" },
 ```
 4. 国际化文件`、src/locales/*`
-
+```bash
+yarn i18n-remove
+删除 */locales/*
+```
 
 ## 其他采坑进行中
 
