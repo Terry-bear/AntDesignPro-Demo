@@ -1,3 +1,10 @@
+<!--
+ * @Author: Terryzh
+ * @Date: 2019-08-19 16:57:09
+ * @LastEditors: Terryzh
+ * @LastEditTime: 2019-08-19 17:01:16
+ * @Description: add readme
+ -->
 # AntDesignPro-Demo
 
 初探AntDesignPro4.0用法和采坑记录
@@ -17,21 +24,35 @@
 重新`yarn`一下,安装回来`node_modules`,项目正常启动.
 
 ## 删除不常用的package
+
 删除package.json里面的：
+
 1. 关于提交前检查的项
+
 ```json
 "husky": { "hooks": { "pre-commit": "npm run lint-staged" } },
 ```
+
 2. 关于jest测试用例
+
 ```json
 "jest-puppeteer": "^4.2.0",
 ```
+
 3. 关于puppeteer浏览器
+
 ```json
   "optionalDependencies": { "puppeteer": "^1.17.0" },
 ```
+
 4. 国际化文件`、src/locales/*`
+
 ```bash
+// 内置了package命令
+npm run i18n-remove
+// 这个脚本将会尝试删除项目中所有的 i18n 代码，对于复杂的运行时代码，表现并不好，慎用。
+
+// 手动删除
 yarn i18n-remove
 删除 */locales/*
 ```
