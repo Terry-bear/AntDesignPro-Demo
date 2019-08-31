@@ -2,12 +2,13 @@
  * @Author: Terryzh
  * @Date: 2019-08-19 16:57:09
  * @LastEditors: Terryzh
- * @LastEditTime: 2019-08-31 14:01:18
+ * @LastEditTime: 2019-08-31 14:28:48
  * @Description: add readme
  -->
 # AntDesignPro-Demo
 
 初探AntDesignPro4.0用法和采坑记录
+欢迎提issues来讨论自己遇到的问题.
 
 ## 初始化项目
 
