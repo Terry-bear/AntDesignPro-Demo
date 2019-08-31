@@ -2,7 +2,7 @@
  * @Author: Terryzh
  * @Date: 2019-08-19 16:57:09
  * @LastEditors: Terryzh
- * @LastEditTime: 2019-08-19 17:01:16
+ * @LastEditTime: 2019-08-31 14:01:18
  * @Description: add readme
  -->
 # AntDesignPro-Demo
@@ -63,9 +63,10 @@ yarn i18n-remove
 
 国内镜像拉取Puppeteer速度很慢,删除后拉包速度显著提升,一般情况下的公司前端开发不需要自己编写前端自动化测试用例.所以删除了
 
-### 整合graphql[TODO]
+### 整合graphql
 
 使用umi-plugin-apollo整合graphql中遇到的坑
+详情请跳入链接[点击我](Article/graphQL.md)
 
 ### AntDesignPro去掉国际化
 
