@@ -2,7 +2,7 @@
  * @Author: Terryzh
  * @Date: 2019-08-19 16:57:09
  * @LastEditors: Terryzh
- * @LastEditTime: 2019-08-31 14:28:48
+ * @LastEditTime: 2019-09-21 15:01:11
  * @Description: add readme
  -->
 # AntDesignPro-Demo
@@ -210,6 +210,23 @@ config.optimization
 ```
 
 > 完美去除打包后的console
+
+
+### less样式覆盖
+
+**如何覆盖局部AntDesign组件样式?**
+找到组件中子class的名字,包裹一层`global`,示例:
+```less
+.CardManual{
+  :global {
+    .antd-pro-pages-kanban-components-charts-chart-card-index-chartTop,
+    .antd-pro-pages-kanban-components-charts-chart-card-index-meta,
+    .antd-pro-pages-kanban-components-charts-chart-card-index-meta{
+      margin-bottom: 10px;
+    }
+  }
+}
+```
 
 #### 后续采坑继续补充...
 
