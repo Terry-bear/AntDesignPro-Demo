@@ -9,7 +9,7 @@
 
 初探AntDesignPro4.0用法和采坑记录
 欢迎提issues来讨论自己遇到的问题.
-
+> tip：现在 umi 同步更新到了 3.0，迁移方案在官网很明确。[umi官网迁移方案](https://umijs.org/zh-CN/docs/upgrade-to-umi-3)
 ## 初始化项目
 
 使用`yarn create umi`会报错,导致脚手架无法生效,使用`npm create umi`选择`Ant design pro`问题解决
